@@ -93,77 +93,13 @@ LDFLAGS="${IPHONESIMULATOR_COMMON_FLAGS}" \
 PREFIX=$TMP_BUILD_DIR/build/iphonesimulator make install
 popd
 
-git clone --depth 1 https://github.com/alex-pinkus/tree-sitter-swift.git
-pushd tree-sitter-swift
-npm install
-popd
-build_parser "swift"
-
-git clone --depth 1 https://github.com/tree-sitter/tree-sitter-go.git
-build_parser "go"
-
-git clone --depth 1 https://github.com/camdencheek/tree-sitter-go-mod.git
-mv tree-sitter-go-mod tree-sitter-gomod
-build_parser "gomod"
-
-git clone --depth 1 https://github.com/tree-sitter/tree-sitter-ruby.git
-build_parser "ruby"
-
-git clone --depth 1 https://github.com/tree-sitter/tree-sitter-json.git
-pushd tree-sitter-json
-popd
-build_parser "json"
-
-git clone --depth 1 https://github.com/tree-sitter/tree-sitter-php.git
-pushd tree-sitter-php
-popd
-build_parser "php"
-
-git clone --depth 1 https://github.com/ikatyang/tree-sitter-markdown.git
-pushd tree-sitter-markdown
-gh pr checkout 42
-popd
-build_parser "markdown"
-
-git clone --depth 1 https://github.com/tree-sitter/tree-sitter-java.git
-pushd tree-sitter-java
-popd
-build_parser "java"
-
-git clone --depth 1 https://github.com/tree-sitter/tree-sitter-python.git
-pushd tree-sitter-python
-gh pr checkout 165
-popd
-build_parser "python"
-
-git clone --depth 1 https://github.com/tree-sitter/tree-sitter-html.git
-pushd tree-sitter-html
-popd
-build_parser "html"
-
-git clone --depth 1 https://github.com/tree-sitter/tree-sitter-css.git
-pushd tree-sitter-css
-gh pr checkout 27
-popd
-build_parser "css"
 
 # now, build the frameworks
 
 pushd $TMP_BUILD_DIR/build/macos
 
 libtool -static -o libtree-sitter.a \
-    lib/libtree-sitter.a \
-    lib/libtree-sitter-swift.a \
-    lib/libtree-sitter-go.a \
-    lib/libtree-sitter-gomod.a \
-    lib/libtree-sitter-ruby.a \
-    lib/libtree-sitter-json.a \
-    lib/libtree-sitter-php.a \
-    lib/libtree-sitter-markdown.a \
-    lib/libtree-sitter-java.a \
-    lib/libtree-sitter-python.a \
-    lib/libtree-sitter-html.a \
-    lib/libtree-sitter-css.a
+    lib/libtree-sitter.a
 
 mkdir -p tree_sitter.framework/Versions/A/{Headers,Modules,Resources}
 cp -f libtree-sitter.a tree_sitter.framework/Versions/A/tree_sitter
@@ -188,18 +124,7 @@ popd
 pushd $TMP_BUILD_DIR/build/iphoneos
 
 libtool -static -o libtree-sitter.a \
-    lib/libtree-sitter.a \
-    lib/libtree-sitter-swift.a \
-    lib/libtree-sitter-go.a \
-    lib/libtree-sitter-gomod.a \
-    lib/libtree-sitter-ruby.a \
-    lib/libtree-sitter-json.a \
-    lib/libtree-sitter-php.a \
-    lib/libtree-sitter-markdown.a \
-    lib/libtree-sitter-java.a \
-    lib/libtree-sitter-python.a \
-    lib/libtree-sitter-html.a \
-    lib/libtree-sitter-css.a
+    lib/libtree-sitter.a
 
 mkdir -p tree_sitter.framework/{Headers,Modules}
 cp -f libtree-sitter.a tree_sitter.framework/tree_sitter
@@ -213,18 +138,7 @@ popd
 pushd $TMP_BUILD_DIR/build/maccatalyst
 
 libtool -static -o libtree-sitter.a \
-    lib/libtree-sitter.a \
-    lib/libtree-sitter-swift.a \
-    lib/libtree-sitter-go.a \
-    lib/libtree-sitter-gomod.a \
-    lib/libtree-sitter-ruby.a \
-    lib/libtree-sitter-json.a \
-    lib/libtree-sitter-php.a \
-    lib/libtree-sitter-markdown.a \
-    lib/libtree-sitter-java.a \
-    lib/libtree-sitter-python.a \
-    lib/libtree-sitter-html.a \
-    lib/libtree-sitter-css.a
+    lib/libtree-sitter.a
 
 mkdir -p tree_sitter.framework/{Headers,Modules}
 cp -f libtree-sitter.a tree_sitter.framework/tree_sitter
@@ -238,19 +152,7 @@ popd
 pushd $TMP_BUILD_DIR/build/iphonesimulator
 
 libtool -static -o libtree-sitter.a \
-    lib/libtree-sitter.a \
-    lib/libtree-sitter-swift.a \
-    lib/libtree-sitter-go.a \
-    lib/libtree-sitter-gomod.a \
-    lib/libtree-sitter-ruby.a \
-    lib/libtree-sitter-json.a \
-    lib/libtree-sitter-php.a \
-    lib/libtree-sitter-markdown.a \
-    lib/libtree-sitter-java.a \
-    lib/libtree-sitter-python.a \
-    lib/libtree-sitter-html.a \
-    lib/libtree-sitter-css.a
-
+    lib/libtree-sitter.a
 mkdir -p tree_sitter.framework/{Headers,Modules}
 cp -f libtree-sitter.a tree_sitter.framework/tree_sitter
 cp include/tree_sitter/*.h tree_sitter.framework/Headers
